@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '@/styles/home.scss'
 import Highlight1 from '@/assets/images/high-1.png'
 import Highlight2 from '@/assets/images/high-2.png'
@@ -8,9 +10,21 @@ import Highlight5 from '@/assets/images/high-5.png'
 import Highlight6 from '@/assets/images/high-6.png'
 import UpTopImage from '@/assets/images/up-top.png'
 
+// 注册 ScrollTrigger 插件
+gsap.registerPlugin(ScrollTrigger)
+
 const Home = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
     const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
+    
+    // 用于动画的 refs
+    const statsSectionRef = useRef<HTMLElement>(null)
+    const videoSectionRef = useRef<HTMLElement>(null)
+    const videoContentRef = useRef<HTMLDivElement>(null)
+    const highlightListRef = useRef<HTMLDivElement>(null)
+    const highlightItemsRef = useRef<(HTMLDivElement | null)[]>([])
+    const faqSectionRef = useRef<HTMLDivElement>(null)
+    const faqItemsRef = useRef<(HTMLDivElement | null)[]>([])
 
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index)
@@ -29,6 +43,180 @@ const Home = () => {
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    // 返回顶部按钮显示/隐藏动画
+    useEffect(() => {
+        const upTopBtn = document.querySelector('.up-top-image')
+        if (upTopBtn) {
+            if (isShowUpTopImage) {
+                gsap.to(upTopBtn, {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'back.out(1.7)'
+                })
+            } else {
+                gsap.to(upTopBtn, {
+                    opacity: 0,
+                    scale: 0.8,
+                    y: '1.389vw',
+                    duration: 0.3,
+                    ease: 'power2.in'
+                })
+            }
+        }
+    }, [isShowUpTopImage])
+
+    // GSAP 滚动动画
+    useEffect(() => {
+        // Stats Section 动画
+        if (statsSectionRef.current) {
+            gsap.fromTo(statsSectionRef.current, 
+                {
+                    opacity: 0,
+                    y: '2.778vw'
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: statsSectionRef.current,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            )
+        }
+
+        // Video Section 动画
+        if (videoSectionRef.current) {
+            gsap.fromTo(videoSectionRef.current,
+                {
+                    opacity: 0,
+                    y: '2.778vw'
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: videoSectionRef.current,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            )
+        }
+
+        // Video Content 从右侧滑入
+        if (videoContentRef.current) {
+            gsap.fromTo(videoContentRef.current,
+                {
+                    opacity: 0,
+                    x: '2.778vw'
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: videoSectionRef.current,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            )
+        }
+
+        // Highlight Items 依次动画
+        highlightItemsRef.current.forEach((item, index) => {
+            if (item) {
+                gsap.fromTo(item,
+                    {
+                        opacity: 0,
+                        y: '1.389vw',
+                        scale: 0.95
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        delay: index * 0.1,
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 85%',
+                            end: 'top 60%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                )
+            }
+        })
+
+        // FAQ Section 动画
+        if (faqSectionRef.current) {
+            gsap.fromTo(faqSectionRef.current,
+                {
+                    opacity: 0,
+                    y: '2.778vw'
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: faqSectionRef.current,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            )
+        }
+
+        // FAQ Items 依次动画
+        faqItemsRef.current.forEach((item, index) => {
+            if (item) {
+                gsap.fromTo(item,
+                    {
+                        opacity: 0,
+                        y: '0.694vw'
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: 'power2.out',
+                        delay: index * 0.05,
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 90%',
+                            end: 'top 70%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                )
+            }
+        })
+
+        // 返回顶部按钮动画（通过状态控制）
+        // 这个动画会在 isShowUpTopImage 状态改变时触发
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+        }
     }, [])
     const faqs = [
         {
@@ -137,7 +325,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <section className="stats-section">
+                <section className="stats-section" ref={statsSectionRef}>
                     <div className='section-container'>
                         <div className='stats-content'>
                             <div className="stats-subtitle">
@@ -179,7 +367,7 @@ const Home = () => {
             </section>
 
             {/* Random video */}
-            <section className='random-video-container'>
+            <section className='random-video-container' ref={videoSectionRef}>
                 <video
                     src="https://videocdn.pollo.ai/effects/video_480p/cmfawivok0qgnyuupvnp8rhyb.mp4"
                     playsInline
@@ -188,7 +376,7 @@ const Home = () => {
                     loop
                     className='video-player'
                 ></video>
-                <div className='video-section'>
+                <div className='video-section' ref={videoContentRef}>
                     <div className='video-title-1'>
                         Random video chat ,1-<br /> on-1 pribate interaction,<br /> real video socializing
                     </div>
@@ -202,9 +390,13 @@ const Home = () => {
                     <div className='common-section-title'>
                         The highlights of Moli
                     </div>
-                    <div className='common-section-highlight-list'>
+                    <div className='common-section-highlight-list' ref={highlightListRef}>
                         {highlightList.map((highlight, index) => (
-                            <div className='common-section-highlight-item' key={index}>
+                            <div 
+                                className='common-section-highlight-item' 
+                                key={index}
+                                ref={el => highlightItemsRef.current[index] = el}
+                            >
                                 <div className="common-section-highlight-item-header">
                                     <img src={highlight.image} alt={highlight.title} className='common-section-highlight-item-header-image' />
                                     <span>{'0' + index}</span>
@@ -222,7 +414,7 @@ const Home = () => {
                     </div>
                 </div>
                 {/* 下面是faq的一些东西 */}
-                <div className='common-section-content'>
+                <div className='common-section-content' ref={faqSectionRef}>
                     <div className='common-section-title'>
                         Frequently Asked Questions
                     </div>
@@ -231,6 +423,7 @@ const Home = () => {
                             <div
                                 key={index}
                                 className="faq-item"
+                                ref={el => faqItemsRef.current[index] = el}
                             >
                                 <button
                                     onClick={() => toggleFaq(index)}

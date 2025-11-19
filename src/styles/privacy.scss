@@ -1,8 +1,29 @@
 .privacy-policy-container {
+    padding: 0 16.111vw;
 	.privacy-policy-header {
 		width: 100%;
-		height: 479px;
-        background: url('/images/privacy-bg.png') no-repeat center center;
-        background-size: 100% 100%;
+		height: 33.264vw;
+        background: url('/images/privacy-bg.png') no-repeat;
+        background-size: contain;
+        background-position: top center;
+        padding-top: 8.125vw;
+        .privacy-policy-header-content{
+            font-size: 3.75vw;
+            line-height: 1.2;
+            color:#111113;
+            text-align: center;
+            font-weight: 600;
+        }
+        .privacy-policy-header-description{
+            padding: 0 9.097vw;
+            margin-top: 1.667vw;
+            font-size: 1.389vw;
+            line-height: 1.52;
+            color:#707071;
+            text-align: center;
+        }
 	}
+    .privacy-policy-content{
+        margin-top: 5.556vw;
+    }
 }

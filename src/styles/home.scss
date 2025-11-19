@@ -181,6 +181,7 @@
 	bottom: -3.13vw;
 	padding-left: 4.17vw;
 	padding-right: 4.17vw;
+    z-index:99;
 }
 
 .stats-content {
@@ -517,6 +518,10 @@
 	height: 5.556vw;
 	cursor: pointer;
     border-radius: 50%;
-    box-shadow: 3px 20px 40px 0px #F362C74D;
-
+    box-shadow: 0.208vw 1.389vw 2.778vw 0px #F362C74D;
+	transition: transform 0.3s ease;
+	
+	&:hover {
+		transform: scale(1.1);
+	}
 }
