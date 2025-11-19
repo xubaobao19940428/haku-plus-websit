@@ -1,0 +1,69 @@
+// SASS 工具类
+
+// 导入变量和 mixins（使用 as * 来导入所有内容，无需命名空间）
+@use './_variables.scss' as *;
+@use './_mixins.scss' as *;
+
+// 工具类示例
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// 间距工具类
+.mt-auto {
+  margin-top: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+// 响应式工具类
+.hide-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @include desktop {
+    display: none !important;
+  }
+}
+
+// 自定义工具类
+.container-responsive {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+.card-custom {
+  @include card;
+  
+  @include mobile {
+    padding: $spacing-md;
+  }
+}
+
