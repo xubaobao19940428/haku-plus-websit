@@ -1,29 +1,51 @@
 .privacy-policy-container {
-    padding: 0 16.111vw;
+	padding: 0 16.111vw;
 	.privacy-policy-header {
 		width: 100%;
 		height: 33.264vw;
-        background: url('/images/privacy-bg.png') no-repeat;
-        background-size: contain;
-        background-position: top center;
-        padding-top: 8.125vw;
-        .privacy-policy-header-content{
-            font-size: 3.75vw;
-            line-height: 1.2;
-            color:#111113;
-            text-align: center;
-            font-weight: 600;
-        }
-        .privacy-policy-header-description{
-            padding: 0 9.097vw;
-            margin-top: 1.667vw;
-            font-size: 1.389vw;
-            line-height: 1.52;
-            color:#707071;
-            text-align: center;
-        }
+		background: url('/images/privacy-bg.png') no-repeat;
+		background-size: contain;
+		background-position: top center;
+		padding-top: 8.125vw;
+		.privacy-policy-header-content {
+			font-size: 3.75vw;
+			line-height: 1.2;
+			color: #111113;
+			text-align: center;
+			font-weight: 600;
+		}
+		.privacy-policy-header-description {
+			padding: 0 9.097vw;
+			margin-top: 1.667vw;
+			font-size: 1.389vw;
+			line-height: 1.52;
+			color: #707071;
+			text-align: center;
+		}
+		.bind-account-description {
+			padding: 0;
+		}
 	}
-    .privacy-policy-content{
-        margin-top: 5.556vw;
-    }
+
+	.privacy-policy-content {
+		margin-top: 5.556vw;
+	}
+	.bind-account-content {
+		margin-top: 5.556vw;
+		.bind-account-title {
+			font-size: 3.05vw;
+			line-height: 1.3;
+			color: #111113;
+			font-weight: 600;
+		}
+		.bind-account-description {
+			display: flex;
+			align-items: center;
+			margin-top: 8px;
+			gap: 3.47vw;
+			font-size: 1.667vw;
+			line-height: 1.5;
+			color: #414142;
+		}
+	}
 }

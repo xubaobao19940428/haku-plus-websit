@@ -40,8 +40,8 @@ const Layout = () => {
                                 Privacy Policy
                             </Link>
                             <Link
-                                to="/gallery"
-                                className={`nav-link ${isActive('/gallery') ? 'active' : ''}`}
+                                to="/user-agreement"
+                                className={`nav-link ${isActive('/user-agreement') ? 'active' : ''}`}
                             >
                                 User Agreeme
                             </Link>
@@ -52,8 +52,8 @@ const Layout = () => {
                                 Children Safety
                             </Link>
                             <Link
-                                to="/blog"
-                                className={`nav-link ${isActive('/blog') ? 'active' : ''}`}
+                                to="/bind-account"
+                                className={`nav-link ${isActive('/bind-account') ? 'active' : ''}`}
                             >
                                 Banned Account
                             </Link>

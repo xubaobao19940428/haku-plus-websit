@@ -18,6 +18,7 @@ const Home = () => {
     const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
     const [rightTopVideoUrl, setRightTopVideoUrl] = useState<string>('')
     const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
+    const [bottomQuestions, setBottomQuestions] = useState<any[]>([])
     // 用于动画的 refs
     const statsSectionRef = useRef<HTMLElement>(null)
     const videoSectionRef = useRef<HTMLElement>(null)
@@ -75,6 +76,7 @@ const Home = () => {
         console.log(data)
         setRightTopVideoUrl(data.data.aboutUs.rightTopVideo)
         setMiddleVideoUrl(data.data.aboutUs.middleVideo)
+        setBottomQuestions(data.data.aboutUs.bottomQuestions)
     }
     // GSAP 滚动动画
     useEffect(() => {

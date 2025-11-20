@@ -5,7 +5,8 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import PrivacyPolicy from './pages/PrivacyPolicy'
-
+import UserAgressme from './pages/UserAgressme'
+import BindAccount from './pages/BindAccount'
 function App() {
     return (
         <Router>
@@ -16,6 +17,8 @@ function App() {
                     <Route path="/about" element={<Home />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/privacy" element={<PrivacyPolicy />} />
+                    <Route path="/user-agreement" element={<UserAgressme />} />
+                    <Route path="/bind-account" element={<BindAccount />} />
                 </Route>
 
                 {/* 不需要 Layout 的路由 */}
