@@ -16,7 +16,8 @@ gsap.registerPlugin(ScrollTrigger)
 const Home = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
     const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
-    
+    const [rightTopVideoUrl, setRightTopVideoUrl] = useState<string>('')
+    const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
     // 用于动画的 refs
     const statsSectionRef = useRef<HTMLElement>(null)
     const videoSectionRef = useRef<HTMLElement>(null)
@@ -68,9 +69,16 @@ const Home = () => {
             }
         }
     }, [isShowUpTopImage])
-
+    const getConfig = async () => {
+        const res = await fetch('http://192.168.103.50:18082/official/site/cfg')
+        const data = await res.json() as any
+        console.log(data)
+        setRightTopVideoUrl(data.data.aboutUs.rightTopVideo)
+        setMiddleVideoUrl(data.data.aboutUs.middleVideo)
+    }
     // GSAP 滚动动画
     useEffect(() => {
+        getConfig()
         // Stats Section 动画
         if (statsSectionRef.current) {
             gsap.fromTo(statsSectionRef.current, 
@@ -316,11 +324,12 @@ const Home = () => {
                             />
                             {/* Phone Screen - positioned inside the frame */}
                             <div className="phone-screen-wrapper">
-                                <img
+                                {/* <img
                                     src="/images/phone-screen.png"
                                     alt="Phone Screen"
                                     className="phone-screen"
-                                />
+                                /> */}
+                                <video src={rightTopVideoUrl} autoPlay muted loop className='phone-screen'></video>
                             </div>
                         </div>
                     </div>
@@ -369,7 +378,7 @@ const Home = () => {
             {/* Random video */}
             <section className='random-video-container' ref={videoSectionRef}>
                 <video
-                    src="https://videocdn.pollo.ai/effects/video_480p/cmfawivok0qgnyuupvnp8rhyb.mp4"
+                    src={middleVideoUrl}
                     playsInline
                     autoPlay
                     muted
@@ -378,10 +387,10 @@ const Home = () => {
                 ></video>
                 <div className='video-section' ref={videoContentRef}>
                     <div className='video-title-1'>
-                        Random video chat ,1-<br /> on-1 pribate interaction,<br /> real video socializing
+                        Random video chat ,1-on-1 pribate interaction,<br /> real video socializing
                     </div>
                     <div className='video-description-1'>
-                        Milo is a social software that aims to provide users with a<br /> perfect experience，more than 30,00000 users<br /> communicate on Milo
+                        Milo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Milo
                     </div>
                 </div>
             </section>
@@ -399,7 +408,7 @@ const Home = () => {
                             >
                                 <div className="common-section-highlight-item-header">
                                     <img src={highlight.image} alt={highlight.title} className='common-section-highlight-item-header-image' />
-                                    <span>{'0' + index}</span>
+                                    <span>{'0' + (index+1)}</span>
                                 </div>
                                 <div className="common-section-highlight-item-content">
                                     <div className="common-section-highlight-item-content-title">

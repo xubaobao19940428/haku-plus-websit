@@ -1,7 +1,7 @@
 import { Link, useLocation, Outlet } from 'react-router-dom'
 import '@/styles/home.scss'
 import '@/styles/footer.scss'
-
+import mobileMenu from '@/assets/images/mobile-menu.png'
 const Layout = () => {
     const location = useLocation()
 
@@ -64,6 +64,9 @@ const Layout = () => {
                             <button className="download-nav-button">
                                 Download
                             </button>
+                        </div>
+                        <div className='mobile-nav-button'>
+                            <img src={mobileMenu} alt="" />
                         </div>
                     </div>
                 </div>
