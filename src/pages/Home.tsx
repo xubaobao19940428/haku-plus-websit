@@ -9,7 +9,7 @@ import Highlight4 from '@/assets/images/high-4.png'
 import Highlight5 from '@/assets/images/high-5.png'
 import Highlight6 from '@/assets/images/high-6.png'
 import UpTopImage from '@/assets/images/up-top.png'
-
+import request from '@/api/request'
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
 
@@ -71,12 +71,10 @@ const Home = () => {
         }
     }, [isShowUpTopImage])
     const getConfig = async () => {
-        const res = await fetch('http://192.168.103.50:18082/official/site/cfg')
-        const data = await res.json() as any
-        console.log(data)
-        setRightTopVideoUrl(data.data.aboutUs.rightTopVideo)
-        setMiddleVideoUrl(data.data.aboutUs.middleVideo)
-        setBottomQuestions(data.data.aboutUs.bottomQuestions)
+        const data = await request('/MoloSiteCfg.json', 'GET') as { aboutUs: { rightTopVideo: string, middleVideo: string, bottomQuestions: any[] } }
+        setRightTopVideoUrl(data.aboutUs.rightTopVideo)
+        setMiddleVideoUrl(data.aboutUs.middleVideo)
+        setBottomQuestions(data.aboutUs.bottomQuestions)
     }
     // GSAP 滚动动画
     useEffect(() => {

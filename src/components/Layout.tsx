@@ -1,12 +1,23 @@
 import { Link, useLocation, Outlet } from 'react-router-dom'
+import { useState } from 'react'
 import '@/styles/home.scss'
 import '@/styles/footer.scss'
 import mobileMenu from '@/assets/images/mobile-menu.png'
+
 const Layout = () => {
     const location = useLocation()
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     const isActive = (path: string) => {
         return location.pathname === path
+    }
+
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen)
+    }
+
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false)
     }
 
     return (
@@ -46,8 +57,8 @@ const Layout = () => {
                                 User Agreeme
                             </Link>
                             <Link
-                                to="/pricing"
-                                className={`nav-link ${isActive('/pricing') ? 'active' : ''}`}
+                                to="/child-safety"
+                                className={`nav-link ${isActive('/child-safety') ? 'active' : ''}`}
                             >
                                 Children Safety
                             </Link>
@@ -65,12 +76,78 @@ const Layout = () => {
                                 Download
                             </button>
                         </div>
-                        <div className='mobile-nav-button'>
-                            <img src={mobileMenu} alt="" />
+                        <div className='mobile-nav-button' onClick={toggleMobileMenu}>
+                            <img src={mobileMenu} alt="Menu" />
                         </div>
                     </div>
                 </div>
             </nav>
+
+            {/* 移动端菜单 */}
+            {isMobileMenuOpen && (
+                <div className="mobile-menu-overlay" onClick={closeMobileMenu}>
+                    <div className="mobile-menu" onClick={(e) => e.stopPropagation()}>
+                        <div className="mobile-menu-header">
+                            <Link to="/" className="mobile-menu-logo" onClick={closeMobileMenu}>
+                                <div className="logo-icon">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="logo-svg">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                    </svg>
+                                </div>
+                                <span className="logo-text">Molo</span>
+                            </Link>
+                            <button className="mobile-menu-close" onClick={closeMobileMenu}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="mobile-menu-links">
+                            <Link
+                                to="/about"
+                                className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}
+                                onClick={closeMobileMenu}
+                            >
+                                About us
+                            </Link>
+                            <Link
+                                to="/privacy"
+                                className={`mobile-nav-link ${isActive('/privacy') ? 'active' : ''}`}
+                                onClick={closeMobileMenu}
+                            >
+                                Privacy Policy
+                            </Link>
+                            <Link
+                                to="/user-agreement"
+                                className={`mobile-nav-link ${isActive('/user-agreement') ? 'active' : ''}`}
+                                onClick={closeMobileMenu}
+                            >
+                                User Agreeme
+                            </Link>
+                            <Link
+                                to="/child-safety"
+                                className={`mobile-nav-link ${isActive('/child-safety') ? 'active' : ''}`}
+                                onClick={closeMobileMenu}
+                            >
+                                Children Safety
+                            </Link>
+                            <Link
+                                to="/bind-account"
+                                className={`mobile-nav-link ${isActive('/bind-account') ? 'active' : ''}`}
+                                onClick={closeMobileMenu}
+                            >
+                                Banned Account
+                            </Link>
+                        </div>
+                        <div className="mobile-menu-button">
+                            <button className="mobile-download-button" onClick={closeMobileMenu}>
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* 主要内容 - 使用 Outlet 渲染子路由 */}
             <main className="main-content">

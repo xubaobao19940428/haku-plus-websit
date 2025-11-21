@@ -27,11 +27,269 @@
 		}
 	}
 
-	.privacy-policy-content {
+	.privacy-policy-content,
+	.child-safety-content {
 		margin-top: 5.556vw;
+	}
+
+	// Child Safety Tab 样式
+	.child-safety-tabs {
+		display: flex;
+		gap: 24px;
+		margin-bottom: 2.778vw;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.child-safety-tab {
+			padding: 8px 12px;
+			font-size: 1.111vw;
+			font-weight: 500;
+			line-height: 1.5;
+			color: #707071;
+			background: none;
+			border: none;
+			border-bottom: 2px solid transparent;
+			cursor: pointer;
+			transition: all 0.3s;
+			white-space: nowrap;
+			position: relative;
+
+			&:hover {
+				color: #111113;
+			}
+
+			&.active {
+				color: #ff43ad;
+				border-bottom-color: #ff43ad;
+			}
+		}
+	}
+
+	.child-safety-swiper-wrapper {
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+
+		.child-safety-swiper {
+			width: 100%;
+			overflow: hidden;
+
+			.swiper-wrapper {
+				display: flex;
+			}
+
+			.swiper-slide {
+				width: 100% !important;
+				flex-shrink: 0;
+				height: auto;
+				display: flex;
+				align-items: flex-start;
+                // margin-right: 1px;
+			}
+		}
+	}
+
+	.child-safety-content-item {
+		width: 100%;
+		height: auto;
+
+		.child-safety-content-item-title {
+			font-size: 2.083vw;
+			line-height: 1.3;
+			color: #111113;
+			font-weight: 600;
+			margin-bottom: 1.389vw;
+		}
+		.child-safety-content-item-desc {
+			margin: 1.667vw 0;
+			font-size: 1.25vw;
+			line-height: 1.55;
+			color: #414142;
+			font-weight: 400;
+		}
+		.upload-image-container {
+			width: 38.889vw;
+			padding: 1.667vw 1.111vw 2.5vw;
+			box-sizing: border-box;
+			border-radius: 1.667vw;
+			background-color: #f6f6f8;
+			position: relative;
+			.close-img {
+				position: absolute;
+				top: 1.667vw;
+				right: 1.111vw;
+				width: 1.944vw;
+				height: 1.944vw;
+				cursor: pointer;
+			}
+			.upload-image-item-title {
+				font-size: 1.389vw;
+				font-weight: 600;
+				color: #101010;
+				margin-bottom: 1.667vw;
+			}
+			.upload-image-item-preview {
+				width: 100%;
+				height: 29.167vw;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				img {
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+			.upload-image-item-content {
+				width: 100%;
+				height: 29.167vw;
+				position: relative;
+				border-radius: 1.111vw;
+				background-color: #ffffff;
+				border: 0.069vw dashed #f362c780;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				img {
+					width: 4.444vw;
+					height: 4.444vw;
+					object-fit: cover;
+				}
+				.upload-image-item-content-title {
+					margin-top: 1.111vw;
+					font-size: 1.111vw;
+					font-weight: 500;
+					line-height: 1.5;
+					color: #101010;
+				}
+				.upload-image-item-content-desc {
+					font-size: 0.972vw;
+					font-weight: 400;
+					color: #878787;
+				}
+				.upload-image-item-content-input {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+					cursor: pointer;
+				}
+			}
+			.start-detect-btn {
+				margin-top: 2.5vw;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				.start-detect-btn-btn {
+					height: 3.889vw;
+					padding: 0 3.681vw;
+					width: max-content;
+					box-sizing: border-box;
+					border-radius: 0.556vw;
+					background-color: #ff43ad;
+					color: #ffffff;
+					font-size: 1.111vw;
+					font-weight: 500;
+					cursor: pointer;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					&:disabled {
+						opacity: 0.5;
+						cursor: not-allowed;
+					}
+				}
+			}
+			.detect-result-content {
+				.detect-result-content-item {
+					margin-bottom: 1.667vw;
+					.detect-result-content-item-title {
+						font-size: 1.111vw;
+						font-weight: 500;
+						color: #101010;
+						margin-bottom: 0.556vw;
+						span {
+							color: #707071;
+						}
+					}
+					.detect-result-content-item-value {
+						width: 100%;
+						height: 3.333vw;
+						border-radius: 0.556vw;
+						border: 0.069vw solid #e9e9e9;
+						background: #fff;
+					}
+				}
+			}
+		}
+		.detect-result-desc {
+			margin-top: 1.667vw;
+			margin-bottom: 2.778vw;
+			font-size: 1.25vw;
+			font-weight: 400;
+			line-height: 1.55;
+			color: #707071;
+			.terms-of-servics-link {
+				color: #006ffa;
+				cursor: pointer;
+			}
+			.privacy-policy-link {
+				color: #006ffa;
+				cursor: pointer;
+			}
+		}
+		.child-safety-content-item-content {
+			// font-size: 1.111vw;
+			// line-height: 1.6;
+			// color: #414142;
+
+			// // Rich text 样式
+			// h1,
+			// h2,
+			// h3,
+			// h4,
+			// h5,
+			// h6 {
+			// 	font-weight: 600;
+			// 	color: #111113;
+			// 	margin-top: 1.389vw;
+			// 	margin-bottom: 0.694vw;
+			// }
+
+			// p {
+			// 	margin-bottom: 0.694vw;
+			// }
+
+			// ul,
+			// ol {
+			// 	margin-left: 1.389vw;
+			// 	margin-bottom: 0.694vw;
+			// }
+
+			// li {
+			// 	margin-bottom: 0.347vw;
+			// }
+
+			// img {
+			// 	max-width: 100%;
+			// 	height: auto;
+			// 	margin: 1.389vw 0;
+			// }
+		}
 	}
 	.bind-account-content {
 		margin-top: 5.556vw;
+
 		.bind-account-title {
 			font-size: 3.05vw;
 			line-height: 1.3;
@@ -46,6 +304,307 @@
 			font-size: 1.667vw;
 			line-height: 1.5;
 			color: #414142;
+		}
+		.bind-account-content-desc {
+			font-size: 2.222vw;
+			line-height: 1.3;
+			font-weight: 600;
+			color: #111113;
+			margin-top: 1.667vw;
+			margin-bottom: 1.667vw;
+		}
+
+		.banned-accounts-table-wrapper {
+			width: 100%;
+			overflow-x: auto;
+			margin-top: 1.667vw;
+		}
+
+		.banned-accounts-table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			border: 1px solid #e5e7eb;
+			border-radius: 1.667vw;
+			background-color: #fff;
+			overflow: hidden;
+
+			thead {
+				background-color: #f9fafb;
+
+				tr {
+					th {
+						// padding: 1.111vw 1.389vw;
+						height: 5.2787vw;
+						font-size: 1.389vw;
+						font-weight: 600;
+						color: #111113;
+						text-align: center;
+
+						&:first-child {
+							border-top-left-radius: 1.667vw;
+						}
+
+						&:last-child {
+							border-right: none;
+							border-top-right-radius: 1.667vw;
+						}
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					text-align: center;
+					&:last-child {
+						border-bottom: none;
+
+						td {
+							&:first-child {
+								border-bottom-left-radius: 1.667vw;
+							}
+
+							&:last-child {
+								border-bottom-right-radius: 1.667vw;
+							}
+						}
+					}
+
+					&:hover {
+						background-color: #f9fafb;
+					}
+
+					td {
+						height: 4.167vw;
+						font-size: 1.25vw;
+						color: #414142;
+						// border-bottom: 1px solid #e5e7eb;
+
+						&:last-child {
+							border-right: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@media (max-width: 1024px) {
+	.privacy-policy-container {
+		padding: 0 16px;
+		.privacy-policy-header {
+			height: auto;
+			.privacy-policy-header-content {
+				font-size: 36px;
+				line-height: 1.3;
+			}
+			.privacy-policy-header-description {
+				font-size: 18px;
+				line-height: 1.52;
+			}
+		}
+        .bind-account-content {
+            margin-top: 40px;
+            .bind-account-title{
+                font-size: 32px;
+            }
+            .bind-account-description{
+                margin-top: 8px;
+                font-size: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                color: #414142;
+            }
+            .bind-account-content-desc {
+                font-size: 24px;
+                margin-top: 48px;
+            }
+
+            .banned-accounts-table-wrapper {
+                margin-top: 24px;
+            }
+            .banned-accounts-table {
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+
+                thead {
+                    tr {
+                        th {
+                            // padding: 12px 16px;
+                            height: 27px;
+                            font-size: 7px;
+                            border-bottom: 1px solid #e5e7eb;
+                            border-right: 1px solid #e5e7eb;
+
+                            &:first-child {
+                                border-top-left-radius: 8px;
+                            }
+
+                            &:last-child {
+                                border-right: none;
+                                border-top-right-radius: 8px;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        border-bottom: 1px solid #e5e7eb;
+
+                        &:last-child {
+                            border-bottom: none;
+                            td {
+                                &:first-child {
+                                    border-bottom-left-radius: 8px;
+                                }
+
+                                &:last-child {
+                                    border-bottom-right-radius: 8px;
+                                }
+                            }
+                        }
+
+                        td {
+                            // padding: 12px 16px;
+                            height: 22px;
+                            font-size: 6.4px;
+                            border-right: 1px solid #e5e7eb;
+
+                            &:last-child {
+                                border-right: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+		.child-safety-content {
+			margin-top: 40px;
+			&-item {
+				.child-safety-content-item-title {
+					font-size: 32px;
+					margin-bottom: 24px;
+				}
+				.child-safety-content-item-desc {
+					font-size: 18px;
+					margin: 24px 0;
+				}
+				.upload-image-container {
+					width: 100%;
+					padding: 24px 16px 36px;
+					border-radius: 12px;
+					.close-img {
+						width: 28px;
+						height: 28px;
+						top: 20px;
+						right: 12px;
+					}
+					.upload-image-item-title {
+						font-size: 20px;
+						margin-bottom: 24px;
+					}
+					.upload-image-item-content {
+						height: 311px;
+						img {
+							width: 64px;
+							height: 64px;
+						}
+						.upload-image-item-content-title {
+							font-size: 16px;
+							margin-top: 16px;
+						}
+						.upload-image-item-content-desc {
+							font-size: 14px;
+						}
+					}
+					.upload-image-item-preview {
+						height: 311px;
+						img {
+							height: 100%;
+						}
+					}
+					.start-detect-btn {
+						margin-top: 36px;
+						.start-detect-btn-btn {
+							height: 56px;
+							padding: 0 53px;
+							font-size: 16px;
+							border-radius: 8px;
+						}
+					}
+					.detect-result-content {
+						.detect-result-content-item {
+							margin-bottom: 24px;
+							.detect-result-content-item-title {
+								font-size: 16px;
+								margin-bottom: 8px;
+							}
+							.detect-result-content-item-value {
+								height: 48px;
+								border-radius: 8px;
+							}
+						}
+					}
+				}
+				.detect-result-desc {
+					font-size: 18px;
+					margin-top: 24px;
+					margin-bottom: 40px;
+				}
+			}
+
+			
+		}
+
+		.child-safety-tabs {
+			margin-bottom: 24px;
+			gap: 0;
+
+			.child-safety-tab {
+				padding: 12px 20px;
+				font-size: 16px;
+			}
+		}
+
+		.child-safety-content-item {
+			.child-safety-content-item-title {
+				font-size: 24px;
+				margin-bottom: 16px;
+			}
+
+			.child-safety-content-item-content {
+				// font-size: 16px;
+
+				// h1,
+				// h2,
+				// h3,
+				// h4,
+				// h5,
+				// h6 {
+				// 	margin-top: 20px;
+				// 	margin-bottom: 12px;
+				// }
+
+				// p {
+				// 	margin-bottom: 12px;
+				// }
+
+				// ul,
+				// ol {
+				// 	margin-left: 20px;
+				// 	margin-bottom: 12px;
+				// }
+
+				// li {
+				// 	margin-bottom: 8px;
+				// }
+
+				// img {
+				// 	margin: 20px 0;
+				// }
+			}
 		}
 	}
 }

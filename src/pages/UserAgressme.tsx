@@ -1,13 +1,12 @@
 import '@/styles/privacy.scss'
 import { useState, useEffect } from 'react'
-
+import request from '@/api/request'
 const UserAgressme = () => {
     const [userAgressmeContent, setUserAgressmeContent] = useState<string>('')
     const getConfig = async () => {
-        const res = await fetch('http://192.168.103.50:18082/official/site/cfg')
-        const data = await res.json() as any
+        const data = await request('/MoloSiteCfg.json', 'GET') as { userAgreement: { content: string } }
         console.log(data)
-        setUserAgressmeContent(data.data.userAgreement.content)
+        setUserAgressmeContent(data.userAgreement.content)
     }
     useEffect(() => {
         getConfig()

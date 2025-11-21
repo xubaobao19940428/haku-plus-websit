@@ -1,13 +1,12 @@
 import '@/styles/privacy.scss'
 import { useState,useEffect } from 'react'
-
+import request from '@/api/request'
 const PrivacyPolicy = () => {
     const [privacyPolicyContent, setPrivacyPolicyContent] = useState<string>('')
     const getConfig = async () => {
-        const res = await fetch('http://192.168.103.50:18082/official/site/cfg')
-        const data = await res.json() as any
+        const data = await request('/MoloSiteCfg.json', 'GET') as { privacy: { content: string } }
         console.log(data)
-        setPrivacyPolicyContent(data.data.privacy.content)
+        setPrivacyPolicyContent(data.privacy.content)
     }
     useEffect(() => {
         getConfig()
