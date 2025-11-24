@@ -8,17 +8,15 @@ import Highlight3 from '@/assets/images/high-3.png'
 import Highlight4 from '@/assets/images/high-4.png'
 import Highlight5 from '@/assets/images/high-5.png'
 import Highlight6 from '@/assets/images/high-6.png'
-import UpTopImage from '@/assets/images/up-top.png'
 import request from '@/api/request'
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
-    const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
+    // const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
     const [rightTopVideoUrl, setRightTopVideoUrl] = useState<string>('')
     const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
-    const [bottomQuestions, setBottomQuestions] = useState<any[]>([])
     // 用于动画的 refs
     const statsSectionRef = useRef<HTMLElement>(null)
     const videoSectionRef = useRef<HTMLElement>(null)
@@ -27,58 +25,28 @@ const Home = () => {
     const highlightItemsRef = useRef<(HTMLDivElement | null)[]>([])
     const faqSectionRef = useRef<HTMLDivElement>(null)
     const faqItemsRef = useRef<(HTMLDivElement | null)[]>([])
+    const animationsInitialized = useRef(false)
 
     const toggleFaq = (index: number) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index)
     }
-    const handleUpTopImage = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY
-            if(scrollPosition > 200){
-                setIsShowUpTopImage(true)
-            }else{
-                setIsShowUpTopImage(false)
-            }
-        }
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
-
-    // 返回顶部按钮显示/隐藏动画
-    useEffect(() => {
-        const upTopBtn = document.querySelector('.up-top-image')
-        if (upTopBtn) {
-            if (isShowUpTopImage) {
-                gsap.to(upTopBtn, {
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: 'back.out(1.7)'
-                })
-            } else {
-                gsap.to(upTopBtn, {
-                    opacity: 0,
-                    scale: 0.8,
-                    y: '1.389vw',
-                    duration: 0.3,
-                    ease: 'power2.in'
-                })
-            }
-        }
-    }, [isShowUpTopImage])
     const getConfig = async () => {
         const data = await request('/MoloSiteCfg.json', 'GET') as { aboutUs: { rightTopVideo: string, middleVideo: string, bottomQuestions: any[] } }
         setRightTopVideoUrl(data.aboutUs.rightTopVideo)
         setMiddleVideoUrl(data.aboutUs.middleVideo)
-        setBottomQuestions(data.aboutUs.bottomQuestions)
     }
     // GSAP 滚动动画
     useEffect(() => {
+        // 检查 sessionStorage，如果动画已经执行过，直接返回
+        const hasAnimated = sessionStorage.getItem('home-animations-executed')
+        if (hasAnimated || animationsInitialized.current) {
+            // 即使动画已执行，仍然需要获取配置
+            getConfig()
+            return
+        }
+
         getConfig()
+        
         // Stats Section 动画
         if (statsSectionRef.current) {
             gsap.fromTo(statsSectionRef.current, 
@@ -222,8 +190,14 @@ const Home = () => {
         // 返回顶部按钮动画（通过状态控制）
         // 这个动画会在 isShowUpTopImage 状态改变时触发
 
+        // 标记动画已初始化（本地和 sessionStorage）
+        animationsInitialized.current = true
+        sessionStorage.setItem('home-animations-executed', 'true')
+
         return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+            // 清理时重置标记，但保留 ScrollTrigger（因为 toggleActions 设置为 reverse）
+            // 只在组件卸载时清理所有 ScrollTrigger
+            // 注意：不清理 sessionStorage，让动画在整个会话中只执行一次
         }
     }, [])
     const faqs = [
@@ -457,11 +431,11 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            {
+            {/* {
                 isShowUpTopImage && (
                     <img src={UpTopImage} alt="" className='up-top-image' onClick={() =>handleUpTopImage()} />
                 )
-            }
+            } */}
         </div>
     )
 }

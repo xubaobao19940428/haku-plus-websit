@@ -13,6 +13,7 @@
 .nav-links {
 	gap: 3.65vw;
 	align-items: center;
+	position: relative;
 }
 
 .main-container {
@@ -234,13 +235,14 @@
 }
 
 .navbar {
-    width: 100%;
+	width: 100%;
 	background-color: #fff;
 	display: flex;
 	align-items: center;
 	position: fixed;
 	top: 0;
-	z-index: 50;
+	z-index: 500;
+	box-shadow: 0px 1px 20px 0px #00000014;
 }
 
 .navbar-container {
@@ -281,29 +283,28 @@
 	text-decoration: none;
 	transition: color 0.2s;
 	position: relative;
+
 	&.active {
 		color: #ff43ad;
-		&::before {
-			content: '';
-			position: absolute;
-			bottom: -4.5px;
-			left: 0;
-            right: 0;
-            margin: auto;
-			width: 42px;
-			height: 2px;
-            border-radius: 3px;
-			background-color: #ff43ad;
-		}
 	}
 
 	&:not(.active) {
 		color: #a0a0a1;
 
 		&:hover {
-			color: #111113;
+			color: #ff43ad;
 		}
 	}
+}
+
+.nav-underline {
+	position: absolute;
+	bottom: -4.5px;
+	left: 0;
+	height: 2px;
+	border-radius: 3px;
+	background-color: #ff43ad;
+	transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .nav-button-wrapper {
@@ -316,7 +317,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-    background-size: auto 100%;
+	background-size: 100% 100%;
 
 	.common-section-content {
 		display: flex;
@@ -449,9 +450,9 @@
 	.nav-links {
 		display: flex !important;
 	}
-    .main-content {
-        padding-top: 7.78vw;
-    }
+	.main-content {
+		padding-top: 7.78vw;
+	}
 	.mobile-nav-button {
 		display: none;
 	}
@@ -729,12 +730,19 @@
 
 // 响应式样式
 @media (max-width: 1024px) {
-    .main-content {
-        padding-top: 72px;
-    }
+	.main-content {
+		padding-top: 72px;
+	}
 	.navbar {
 		height: 72px;
 		padding: 0 16px;
+		// position: relative;
+		.navbar-container {
+			position: relative;
+		}
+		.navbar-inner {
+			position: relative;
+		}
 		.nav-links {
 			display: none !important;
 		}
@@ -755,6 +763,8 @@
 			width: 40px;
 			height: 40px;
 			cursor: pointer;
+			position: relative;
+			z-index: 1001;
 			img {
 				width: 100%;
 				height: 100%;
@@ -762,141 +772,87 @@
 		}
 	}
 
-	// 移动端菜单样式
+	// 移动端菜单样式 - 下拉菜单
 	.mobile-menu-overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: rgba(0, 0, 0, 0.5);
-		z-index: 1000;
-		animation: fadeIn 0.3s ease;
+		background-color: transparent;
+		z-index: 999;
 	}
 
 	.mobile-menu {
-		position: fixed;
-		top: 0;
+		position: absolute;
+		top: calc(100% + 15px);
 		right: 0;
-		width: 280px;
-		height: 100%;
+		// width: 200px;
 		background-color: #fff;
-		box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-		z-index: 1001;
-		display: flex;
-		flex-direction: column;
-		animation: slideIn 0.3s ease;
-	}
+		border-radius: 10px;
+		border: 1px solid #0000000a;
+		z-index: 1000;
+		// overflow: hidden;
+        padding: 8px 16px 0;
+		animation: slideDown 0.3s ease;
+        &::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: -7.5px;
+            right: 16px;
+           
+            background-color: #fff;
+            rotate: 45deg;
+            border-top: 1px solid #0000000a;
+            border-left: 1px solid #0000000a;
+            border-top-right-radius: 2px;
 
-	.mobile-menu-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 16px;
-		border-bottom: 1px solid #e5e7eb;
-	}
-
-	.mobile-menu-logo {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		text-decoration: none;
-		color: #111113;
-		font-weight: 600;
-		font-size: 18px;
-
-		.logo-icon {
-			width: 32px;
-			height: 32px;
-			border-radius: 12px;
-		}
-	}
-
-	.mobile-menu-close {
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: none;
-		border: none;
-		cursor: pointer;
-		color: #111113;
-		padding: 0;
-
-		&:hover {
-			opacity: 0.7;
-		}
-
-		svg {
-			width: 24px;
-			height: 24px;
-		}
+        }
 	}
 
 	.mobile-menu-links {
-		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 16px 0;
-		overflow-y: auto;
+	
 	}
 
 	.mobile-nav-link {
-		padding: 16px 24px;
 		font-size: 16px;
 		color: #111113;
 		text-decoration: none;
-		border-bottom: 1px solid #f3f4f6;
-		transition: background-color 0.2s;
-
+		transition: background-color 0.2s, color 0.2s;
+        height: 50px;
+        width: 125px;
+        line-height: 50px;
+        font-weight: 500;
+        border-bottom: 1px solid #ECECEC;
+        text-align: end;
 		&:hover {
 			background-color: #f9fafb;
 		}
 
 		&.active {
 			color: #ff43ad;
-			background-color: #fff5f9;
+			background-color: transparent;
+		}
+
+
+		&:last-child {
+			// padding-bottom: 12px;
+            border-bottom: none;
 		}
 	}
 
-	.mobile-menu-button {
-		padding: 16px;
-		border-top: 1px solid #e5e7eb;
-	}
-
-	.mobile-download-button {
-		width: 100%;
-		background-color: #000;
-		color: #fff;
-		font-size: 16px;
-		font-weight: 500;
-		padding: 14px 24px;
-		border: none;
-		border-radius: 8px;
-		cursor: pointer;
-		transition: background-color 0.2s;
-
-		&:hover {
-			background-color: #1f2937;
-		}
-	}
-
-	@keyframes fadeIn {
+	@keyframes slideDown {
 		from {
 			opacity: 0;
+			transform: translateY(-10px);
 		}
 		to {
 			opacity: 1;
-		}
-	}
-
-	@keyframes slideIn {
-		from {
-			transform: translateX(100%);
-		}
-		to {
-			transform: translateX(0);
+			transform: translateY(0);
 		}
 	}
 	.main-container {
@@ -1000,7 +956,7 @@
 		box-sizing: border-box;
 		flex-direction: column-reverse;
 		gap: 66px;
-        background-size: 100% 100%;
+		background-size: 100% 100%;
 		.video-player {
 			width: 100%;
 			border-width: 6px;
@@ -1080,5 +1036,11 @@
 				}
 			}
 		}
+	}
+    .up-top-image {
+		bottom: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
 	}
 }

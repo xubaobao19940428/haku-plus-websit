@@ -19,6 +19,8 @@ const ChildSafety = () => {
     const [activeTabIndex, setActiveTabIndex] = useState(0)
     const [uploadImageResult, setUploadImageResult] = useState<string>('')
     const swiperRef = useRef<SwiperType | null>(null)
+    const tabsContainerRef = useRef<HTMLDivElement>(null)
+    const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
     /**
      * 上传图片
      * @param e 
@@ -70,6 +72,29 @@ const ChildSafety = () => {
         if (swiperRef.current) {
             swiperRef.current.slideTo(index)
         }
+        
+        // 滚动到被点击的 tab，确保它在可视区域内
+        const clickedTab = tabRefs.current[index]
+        const tabsContainer = tabsContainerRef.current
+        
+        if (clickedTab && tabsContainer) {
+            const containerRect = tabsContainer.getBoundingClientRect()
+            const tabRect = clickedTab.getBoundingClientRect()
+            
+            // 检查 tab 是否在可视区域内
+            const isTabVisible = 
+                tabRect.left >= containerRect.left &&
+                tabRect.right <= containerRect.right
+            
+            // 如果不在可视区域内，滚动到该 tab
+            if (!isTabVisible) {
+                clickedTab.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                })
+            }
+        }
     }
 
     return (
@@ -84,10 +109,11 @@ const ChildSafety = () => {
             </div>
             <div className='child-safety-content'>
                 {/* Tab 导航 */}
-                <div className='child-safety-tabs'>
+                <div className='child-safety-tabs' ref={tabsContainerRef}>
                     {tabKeys.map((key, index) => (
                         <button
                             key={key}
+                            ref={(el) => (tabRefs.current[index] = el)}
                             className={`child-safety-tab ${activeTabIndex === index ? 'active' : ''}`}
                             onClick={() => handleTabClick(index)}
                         >
@@ -103,8 +129,9 @@ const ChildSafety = () => {
                         spaceBetween={0}
                         slidesPerView={1}
                         autoHeight={true}
-                        allowTouchMove={true}
+                        allowTouchMove={false}
                         watchOverflow={true}
+
                         onSwiper={(swiper: SwiperType) => {
                             swiperRef.current = swiper
                         }}
