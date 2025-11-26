@@ -17,6 +17,10 @@ const Home = () => {
     // const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
     const [rightTopVideoUrl, setRightTopVideoUrl] = useState<string>('')
     const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
+    const [leftTopText, setLeftTopText] = useState<string>('')
+    const [middleVideoNote, setMiddleVideoNote] = useState<string>('')
+    const [middleContents, setMiddleContents] = useState<any[]>([])
+    const [bottomQuestions, setBottomQuestions] = useState<any[]>([])
     // 用于动画的 refs
     const statsSectionRef = useRef<HTMLElement>(null)
     const videoSectionRef = useRef<HTMLElement>(null)
@@ -31,9 +35,13 @@ const Home = () => {
         setOpenFaqIndex(openFaqIndex === index ? null : index)
     }
     const getConfig = async () => {
-        const data = await request('/MoloSiteCfg.json', 'GET') as { aboutUs: { rightTopVideo: string, middleVideo: string, bottomQuestions: any[] } }
+        const data = await request('/MoloSiteCfg.json', 'GET') as { aboutUs: { rightTopVideo: string, middleVideo: string, bottomQuestions: any[],[key:string]:any } }
         setRightTopVideoUrl(data.aboutUs.rightTopVideo)
         setMiddleVideoUrl(data.aboutUs.middleVideo)
+        setLeftTopText(data.aboutUs.leftTopText)
+        setMiddleVideoNote(data.aboutUs.middleVideoNote)
+        setMiddleContents(data.aboutUs.middleContents)
+        setBottomQuestions(data.aboutUs.bottomQuestions)
     }
     // GSAP 滚动动画
     useEffect(() => {
@@ -268,14 +276,15 @@ const Home = () => {
                     <div className="hero-inner">
                         {/* Left Content */}
                         <div className="hero-left">
-                            <h1 className="hero-title">
+                        <div dangerouslySetInnerHTML={{ __html: leftTopText }}></div>
+                            {/* <h1 className="hero-title">
                                 A global{' '}
                                 <span className="hero-title-accent">Online Video</span>
                                 {' '}<br />platform for content creation,<br />discovery & communication
                             </h1>
                             <p className="hero-description">
                                 Molo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Molo
-                            </p>
+                            </p> */}
                             <div className="hero-buttons">
                                 <button className="download-button">
                                     <img src="/images/app-store.png" alt="" className="download-button-icon" />
@@ -359,13 +368,13 @@ const Home = () => {
                     loop
                     className='video-player'
                 ></video>
-                <div className='video-section' ref={videoContentRef}>
-                    <div className='video-title-1'>
+                <div className='video-section' ref={videoContentRef} dangerouslySetInnerHTML={{ __html: middleVideoNote }}>
+                    {/* <div className='video-title-1'>
                         Random video chat ,1-on-1 pribate interaction,<br /> real video socializing
                     </div>
                     <div className='video-description-1'>
                         Molo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Molo
-                    </div>
+                    </div> */}
                 </div>
             </section>
             <section className='common-section'>
@@ -374,13 +383,14 @@ const Home = () => {
                         The highlights of Molo
                     </div>
                     <div className='common-section-highlight-list' ref={highlightListRef}>
-                        {highlightList.map((highlight, index) => (
+                        {middleContents.map((highlight, index) => (
                             <div 
                                 className='common-section-highlight-item' 
                                 key={index}
                                 ref={el => highlightItemsRef.current[index] = el}
                             >
-                                <div className="common-section-highlight-item-header">
+                                <div dangerouslySetInnerHTML={{ __html: highlight.content }}></div>
+                                {/* <div className="common-section-highlight-item-header">
                                     <img src={highlight.image} alt={highlight.title} className='common-section-highlight-item-header-image' />
                                     <span>{'0' + (index+1)}</span>
                                 </div>
@@ -391,7 +401,7 @@ const Home = () => {
                                     <div className="common-section-highlight-item-content-description">
                                         {highlight.description}
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         ))}
                     </div>
@@ -402,7 +412,7 @@ const Home = () => {
                         Frequently Asked Questions
                     </div>
                     <div className="faq-list">
-                        {faqs.map((faq, index) => (
+                        {bottomQuestions.map((faq, index) => (
                             <div
                                 key={index}
                                 className="faq-item"
@@ -412,8 +422,8 @@ const Home = () => {
                                     onClick={() => toggleFaq(index)}
                                     className="faq-button"
                                 >
-                                    <h3 className="faq-question">
-                                        {faq.question}
+                                    <h3 className="faq-question" >
+                                        <div dangerouslySetInnerHTML={{ __html: faq.content }}></div>
                                     </h3>
                                     <span className="faq-toggle">
                                         {openFaqIndex === index ? '−' : '+'}
@@ -422,7 +432,7 @@ const Home = () => {
                                 {openFaqIndex === index && (
                                     <div className="faq-answer">
                                         <p className="faq-answer-text">
-                                            {faq.answer}
+                                            <div dangerouslySetInnerHTML={{ __html: faq.note }}></div>
                                         </p>
                                     </div>
                                 )}
