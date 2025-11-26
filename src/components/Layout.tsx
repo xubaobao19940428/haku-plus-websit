@@ -4,6 +4,7 @@ import '@/styles/home.scss'
 import '@/styles/footer.scss'
 import mobileMenu from '@/assets/images/mobile-menu.png'
 import UpTopImage from '@/assets/images/up-top.png'
+import logo from '@/assets/images/logo.png'
 const Layout = () => {
     const location = useLocation()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -119,11 +120,12 @@ const Layout = () => {
                     <div className="navbar-inner">
                         {/* Logo */}
                         <Link to="/" className="logo-link">
-                            <div className="logo-icon">
+                            <img src={logo} alt="Molo" className="logo-icon" />
+                            {/* <div className="logo-icon">
                                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="logo-svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                 </svg>
-                            </div>
+                            </div> */}
                             <span className="logo-text">Molo</span>
                         </Link>
 
@@ -248,11 +250,9 @@ const Layout = () => {
                         {/* Logo and Description */}
                         <div className="footer-logo-section">
                             <div className="footer-logo-wrapper">
-                                <div className="footer-logo-icon">
-                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="footer-logo-svg">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                                    </svg>
-                                </div>
+                                {/* <div className="footer-logo-icon"> */}
+                                    <img src={logo} alt="Molo" className="footer-logo-icon" />
+                                {/* </div> */}
                                 <span className="footer-logo-text">Molo</span>
                             </div>
                             <h3 className="footer-title">
