@@ -134,15 +134,16 @@
 .phone-screen-wrapper {
 	position: absolute;
 	top: 0;
-	left: 3.5%;
+	left: 1%;
 	height: 100%;
 	z-index: 20;
 }
 
 .phone-screen {
-	width: 100%;
+	width: calc(100% - 8px);
 	height: 100%;
 	object-fit: cover;
+    border-radius: 70px;
 }
 
 .stats-section {
@@ -528,7 +529,7 @@
 	}
 
 	.phone-screen {
-		border-radius: 2.778vw;
+		border-radius: 70px;
 	}
 
 	.stats-section {
@@ -909,6 +910,10 @@
 					}
 					.phone-screen-wrapper {
 						left: 38px;
+                        // padding: 0 32px;
+                        .phone-screen{
+                            border-radius: 60px;
+                        }
 					}
 				}
 			}
