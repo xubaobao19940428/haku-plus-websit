@@ -104,7 +104,7 @@ const ChildSafety = () => {
                     Children Safety
                 </div>
                 <div className="privacy-policy-header-description">
-                    Milo enforces a stringent policy of no tolerance towards any incidents of abuse, exploitation, or sexualization concerning children. Users failing to respect Milo's policies to safeguard minors (individuals below the age of 18) in line with the provisions outlined below may face banned from Milo and potential legal consequences.
+                    Molo enforces a stringent policy of no tolerance towards any incidents of abuse, exploitation, or sexualization concerning children. Users failing to respect Molo's policies to safeguard minors (individuals below the age of 18) in line with the provisions outlined below may face banned from Molo and potential legal consequences.
                 </div>
             </div>
             <div className='child-safety-content'>

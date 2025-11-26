@@ -256,7 +256,7 @@ const Layout = () => {
                                 <span className="footer-logo-text">Molo</span>
                             </div>
                             <h3 className="footer-title">
-                                Download Milo for a smooth video chat
+                                Download Molo for a smooth video chat
                             </h3>
                         </div>
 
@@ -277,7 +277,7 @@ const Layout = () => {
                     <div className="footer-divider">
                         <div className="footer-copyright">
                             <p>12th Floor,San Toi Building,134-135,Central And Western,Shang Hai</p>
-                            <p>Copyright &copy; 2025 Milo Live Co</p>
+                            <p>Copyright &copy; 2025 Molo Live Co</p>
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ const BindAccount = () => {
                     Banned Account
                 </div>
                 <div className="privacy-policy-header-description bind-account-description">
-                    Milo APP is unwavering in its commitment to strictly combat and eliminate content that violates rules, particularly actions that can harm or infringe upon the rights and privacy of minors. We strive to create a healthy and safe social environment for our users. We fully understand the enormous challenges and substantial responsibilities this goal entails. We invite everyone to work alongside Milo in building a more harmonious and beautiful online community.
+                    Molo APP is unwavering in its commitment to strictly combat and eliminate content that violates rules, particularly actions that can harm or infringe upon the rights and privacy of minors. We strive to create a healthy and safe social environment for our users. We fully understand the enormous challenges and substantial responsibilities this goal entails. We invite everyone to work alongside Molo in building a more harmonious and beautiful online community.
                 </div>
             </div>
             <div
@@ -42,7 +42,7 @@ const BindAccount = () => {
                         Last updated date: {lastUpdateDate}
                     </div>
                     <div className='bind-account-description-right'>
-                        Contact us: info@Milo.chat
+                        Contact us: info@Molo.chat
                     </div>
                 </div>
                 <div className='bind-account-content-desc'>

@@ -202,30 +202,30 @@ const Home = () => {
     }, [])
     const faqs = [
         {
-            question: 'What is Milo?',
+            question: 'What is Molo?',
             answer: 'Visonix is an AI-powered image generator that transforms text descriptions into high-quality visuals, making it easy for anyone to create stunning images.'
         },
         {
-            question: 'How to download Milo on my phone?',
-            answer: 'You can download Milo from the App Store or Google Play Store. Simply search for "Milo" and click the download button.'
+            question: 'How to download Molo on my phone?',
+            answer: 'You can download Molo from the App Store or Google Play Store. Simply search for "Molo" and click the download button.'
         },
         {
             question: 'Do l need to login?',
-            answer: 'Yes, you need to create an account to use Milo. Registration is quick and easy, and you can start chatting immediately after signing up.'
+            answer: 'Yes, you need to create an account to use Molo. Registration is quick and easy, and you can start chatting immediately after signing up.'
         },
         {
             question: 'lf we don\'t speak the same language,how can I chat with people from other countries?',
-            answer: 'Milo has built-in translation features that help you communicate with people from different countries, even if you don\'t speak the same language.'
+            answer: 'Molo has built-in translation features that help you communicate with people from different countries, even if you don\'t speak the same language.'
         },
         {
             question: 'What are Diamonds?',
-            answer: 'Diamonds are virtual currency in Milo that you can use to unlock premium features, send gifts, and enhance your chatting experience.'
+            answer: 'Diamonds are virtual currency in Molo that you can use to unlock premium features, send gifts, and enhance your chatting experience.'
         }
     ]
     const highlightList = [
         {
             title: 'Real person video chat',
-            description: 'Are you looking for a place where you can speak your mind without hiding anything? Then come to Milo! Here, you‘ ll find various ways to interact and chat however you like.',
+            description: 'Are you looking for a place where you can speak your mind without hiding anything? Then come to Molo! Here, you‘ ll find various ways to interact and chat however you like.',
             image: Highlight1
         },
         {
@@ -274,7 +274,7 @@ const Home = () => {
                                 {' '}<br />platform for content creation,<br />discovery & communication
                             </h1>
                             <p className="hero-description">
-                                Milo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Milo
+                                Molo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Molo
                             </p>
                             <div className="hero-buttons">
                                 <button className="download-button">
@@ -312,7 +312,7 @@ const Home = () => {
                     <div className='section-container'>
                         <div className='stats-content'>
                             <div className="stats-subtitle">
-                                Join Milo Today
+                                Join Molo Today
                             </div>
                             <div className="stats-title">
                                 Advantage of<br />
@@ -364,14 +364,14 @@ const Home = () => {
                         Random video chat ,1-on-1 pribate interaction,<br /> real video socializing
                     </div>
                     <div className='video-description-1'>
-                        Milo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Milo
+                        Molo is a social software that aims to provide users with a perfect experience，more than 30,00000 users communicate on Molo
                     </div>
                 </div>
             </section>
             <section className='common-section'>
                 <div className='common-section-content'>
                     <div className='common-section-title'>
-                        The highlights of Moli
+                        The highlights of Molo
                     </div>
                     <div className='common-section-highlight-list' ref={highlightListRef}>
                         {highlightList.map((highlight, index) => (

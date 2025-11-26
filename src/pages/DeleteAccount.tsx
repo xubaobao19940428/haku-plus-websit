@@ -122,14 +122,14 @@ const DeleteAccount = () => {
             <div className='delete-account-content'>
                 <div className='delete-account-content-top'>
                     <div className='delete-account-content-top-title'>
-                        Milo Data Subject Rights Request Form
+                        Molo Data Subject Rights Request Form
                     </div> 
                     <div className='delete-account-content-top-description'>
                         For an overview of data subject rights available to you please refer to the <span className='delete-account-content-top-description-span' onClick={() => {
                             navigate('/privacy')
-                        }}>Milo Privacy Policy</span>. If you feel that one of the rights applies to you and you wish to exercise it please complete the form and submit it to us together with the verification documentation set out at Part 3 below.
-                        Please ensure that you have provided all of the information requested below in a legible format, and add as much detail as possible as we will not respond to incomplete requests. If you have any questions about this form, please do not hesitate to contact us at info@Milo.com.
-                        Milo when used in this form refers to your data controlling entity referred to in the Milo Privacy Policy.
+                        }}>Molo Privacy Policy</span>. If you feel that one of the rights applies to you and you wish to exercise it please complete the form and submit it to us together with the verification documentation set out at Part 3 below.
+                        Please ensure that you have provided all of the information requested below in a legible format, and add as much detail as possible as we will not respond to incomplete requests. If you have any questions about this form, please do not hesitate to contact us at info@Molo.com.
+                        Molo when used in this form refers to your data controlling entity referred to in the Molo Privacy Policy.
                     </div>
                 </div>
                 <form className='delete-account-content-form' onSubmit={handleSubmit}>
@@ -287,7 +287,7 @@ const DeleteAccount = () => {
                                 <span className="footer-logo-text">Molo</span>
                             </div>
                             <h3 className="footer-title">
-                                Download Milo for a smooth video chat
+                                Download Molo for a smooth video chat
                             </h3>
                         </div>
 
@@ -308,7 +308,7 @@ const DeleteAccount = () => {
                     <div className="footer-divider">
                         <div className="footer-copyright">
                             <p>12th Floor,San Toi Building,134-135,Central And Western,Shang Hai</p>
-                            <p>Copyright &copy; 2025 Milo Live Co</p>
+                            <p>Copyright &copy; 2025 Molo Live Co</p>
                         </div>
                     </div>
                 </div>
