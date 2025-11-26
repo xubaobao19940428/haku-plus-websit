@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_APP_REQUEST_URL
+const baseURL = 'http://192.168.103.50/admin-ui-vue3'
 
 const request = async (url: string, method: string = 'GET', data?: Record<string, unknown>) => {
     return new Promise<unknown>((resolve, reject) => {
