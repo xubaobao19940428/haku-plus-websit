@@ -276,8 +276,9 @@ const Layout = () => {
                     {/* Divider and Copyright */}
                     <div className="footer-divider">
                         <div className="footer-copyright">
-                            <p>12th Floor,San Toi Building,134-135,Central And Western,Shang Hai</p>
-                            <p>Copyright &copy; 2025 Molo Live Co</p>
+                            <p>Rm 811 BEVERLEY COML BLDG 87-105,CHATHAM RD S Tsim Sha Tsui,HK
+                            </p>
+                            <p>&copy; KIKA PIKA NETWORK LIMITED.,2025.All rights reserved. </p>
                         </div>
                     </div>
                 </div>
