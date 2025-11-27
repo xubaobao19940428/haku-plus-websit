@@ -143,9 +143,9 @@ const ChildSafety = () => {
                             key != 'detectService' ? (
                                 <SwiperSlide key={key}>
                                     <div className='child-safety-content-item'>
-                                        <div className='child-safety-content-item-title'>
+                                        {/* <div className='child-safety-content-item-title'>
                                             {key}
-                                        </div>
+                                        </div> */}
                                         <div className='child-safety-content-item-content'>
                                             <div dangerouslySetInnerHTML={{ __html: childSafetyContent[key].content }} />
                                         </div>
