@@ -1,5 +1,5 @@
 import '@/styles/privacy.scss'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
@@ -14,6 +14,19 @@ interface ChildSafetyContent {
     }
 }
 
+interface TabItem {
+    title: string
+    content: string
+    key: string
+}
+
+const TAB_CONFIG: Array<{ title: string; key: string }> = [
+    { title: 'Child Safety Policy', key: 'safefyPolicy' },
+    { title: 'Announcement', key: 'announcement' },
+    { title: 'Detect Service', key: 'detectService' },
+    { title: 'Report CSAM', key: 'reportCsam' }
+]
+
 const ChildSafety = () => {
     const [childSafetyContent, setChildSafetyContent] = useState<ChildSafetyContent>({})
     const [activeTabIndex, setActiveTabIndex] = useState(0)
@@ -21,6 +34,15 @@ const ChildSafety = () => {
     const swiperRef = useRef<SwiperType | null>(null)
     const tabsContainerRef = useRef<HTMLDivElement>(null)
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+    
+    // 使用 useMemo 根据 childSafetyContent 动态生成 tabKeys
+    const tabKeys = useMemo<TabItem[]>(() => {
+        return TAB_CONFIG.map(config => ({
+            title: config.title,
+            content: childSafetyContent[config.key]?.content || '',
+            key: config.key
+        }))
+    }, [childSafetyContent])
     /**
      * 上传图片
      * @param e 
@@ -59,33 +81,31 @@ const ChildSafety = () => {
         const data = await request('/MoloSiteCfg.json', 'GET') as { childrenSafety: ChildSafetyContent }
         console.log(data)
         setChildSafetyContent(data.childrenSafety)
+        
     }
 
     useEffect(() => {
         getConfig()
     }, [])
-
-    const tabKeys = Object.keys(childSafetyContent)
-
     const handleTabClick = (index: number) => {
         setActiveTabIndex(index)
         if (swiperRef.current) {
             swiperRef.current.slideTo(index)
         }
-        
+
         // 滚动到被点击的 tab，确保它在可视区域内
         const clickedTab = tabRefs.current[index]
         const tabsContainer = tabsContainerRef.current
-        
+
         if (clickedTab && tabsContainer) {
             const containerRect = tabsContainer.getBoundingClientRect()
             const tabRect = clickedTab.getBoundingClientRect()
-            
+
             // 检查 tab 是否在可视区域内
-            const isTabVisible = 
+            const isTabVisible =
                 tabRect.left >= containerRect.left &&
                 tabRect.right <= containerRect.right
-            
+
             // 如果不在可视区域内，滚动到该 tab
             if (!isTabVisible) {
                 clickedTab.scrollIntoView({
@@ -110,14 +130,14 @@ const ChildSafety = () => {
             <div className='child-safety-content'>
                 {/* Tab 导航 */}
                 <div className='child-safety-tabs' ref={tabsContainerRef}>
-                    {tabKeys.map((key, index) => (
+                    {tabKeys.map((item, index) => (
                         <button
-                            key={key}
+                            key={item.title}
                             ref={(el) => (tabRefs.current[index] = el)}
                             className={`child-safety-tab ${activeTabIndex === index ? 'active' : ''}`}
                             onClick={() => handleTabClick(index)}
                         >
-                            {key}
+                            {item.title}
                         </button>
                     ))}
                 </div>
@@ -140,19 +160,19 @@ const ChildSafety = () => {
                         className="child-safety-swiper"
                     >
                         {tabKeys.map((key) => (
-                            key != 'detectService' ? (
-                                <SwiperSlide key={key}>
+                            key.title != 'Detect Service' ? (
+                                <SwiperSlide key={key.title}>
                                     <div className='child-safety-content-item'>
                                         {/* <div className='child-safety-content-item-title'>
                                             {key}
                                         </div> */}
                                         <div className='child-safety-content-item-content'>
-                                            <div dangerouslySetInnerHTML={{ __html: childSafetyContent[key].content }} />
+                                            <div dangerouslySetInnerHTML={{ __html: key.content }} />
                                         </div>
                                     </div>
                                 </SwiperSlide>
                             ) : (
-                                <SwiperSlide key={key}>
+                                <SwiperSlide key={key.title}>
                                     <div className='child-safety-content-item'>
                                         <div className='child-safety-content-item-title'>
                                             UGC Detection

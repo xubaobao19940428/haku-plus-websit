@@ -17,6 +17,8 @@ const Home = () => {
     // const [isShowUpTopImage, setIsShowUpTopImage] = useState(false)
     const [rightTopVideoUrl, setRightTopVideoUrl] = useState<string>('')
     const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
+
+    const [topNavs, setTopNavs] = useState<any[]>([])
     const [leftTopText, setLeftTopText] = useState<string>('')
     const [middleVideoNote, setMiddleVideoNote] = useState<string>('')
     const [bottomQuestions, setBottomQuestions] = useState<any[]>([])
@@ -40,6 +42,7 @@ const Home = () => {
         setLeftTopText(data.aboutUs.leftTopText)
         setMiddleVideoNote(data.aboutUs.middleVideoNote)
         setBottomQuestions(data.aboutUs.bottomQuestions)
+        setTopNavs(data.aboutUs.topNavs)
     }
     // GSAP 滚动动画
     useEffect(() => {
@@ -327,30 +330,36 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="stats-grid">
-                            <div className="stats-item">
-                                <div className="stats-number">
-                                    200+
+                            {topNavs.map((topNav, index) => (
+                                <div className="stats-item" key={index}>
+                                    <div className="stats-number" dangerouslySetInnerHTML={{ __html: topNav.note }}></div>
+                                    <div className="stats-text" dangerouslySetInnerHTML={{ __html: topNav.content }}></div>
                                 </div>
-                                <div className="stats-text">
-                                    Our users come from all<br /> over the world.
-                                </div>
-                            </div>
-                            <div className="stats-item">
-                                <div className="stats-number">
-                                    3000K+
-                                </div>
-                                <div className="stats-text">
-                                    Registered users
-                                </div>
-                            </div>
-                            <div className="stats-item">
-                                <div className="stats-number">
-                                    10k+
-                                </div>
-                                <div className="stats-text">
-                                    Daily Online users
-                                </div>
-                            </div>
+                            ))}
+                            {/* // <div className="stats-item">
+                            //     <div className="stats-number">
+                            //         200+
+                            //     </div>
+                            //     <div className="stats-text">
+                            //         Our users come from all<br /> over the world.
+                            //     </div>
+                            // </div>
+                            // <div className="stats-item">
+                            //     <div className="stats-number">
+                            //         3000K+
+                            //     </div>
+                            //     <div className="stats-text">
+                            //         Registered users
+                            //     </div>
+                            // </div>
+                            // <div className="stats-item">
+                            //     <div className="stats-number">
+                            //         10k+
+                            //     </div>
+                            //     <div className="stats-text">
+                            //         Daily Online users
+                            //     </div>
+                            // </div> */}
                         </div>
                     </div>
                 </section>
@@ -421,7 +430,7 @@ const Home = () => {
                                     className="faq-button"
                                 >
                                     <h3 className="faq-question" >
-                                        <div dangerouslySetInnerHTML={{ __html: faq.content }}></div>
+                                        <span dangerouslySetInnerHTML={{ __html: faq.content }}></span>
                                     </h3>
                                     <span className="faq-toggle">
                                         {openFaqIndex === index ? '−' : '+'}
@@ -429,9 +438,7 @@ const Home = () => {
                                 </button>
                                 {openFaqIndex === index && (
                                     <div className="faq-answer">
-                                        <p className="faq-answer-text">
-                                            <div dangerouslySetInnerHTML={{ __html: faq.note }}></div>
-                                        </p>
+                                        <div className="faq-answer-text" dangerouslySetInnerHTML={{ __html: faq.note }}></div>
                                     </div>
                                 )}
                             </div>
