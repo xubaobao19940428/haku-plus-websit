@@ -19,7 +19,6 @@ const Home = () => {
     const [middleVideoUrl, setMiddleVideoUrl] = useState<string>('')
     const [leftTopText, setLeftTopText] = useState<string>('')
     const [middleVideoNote, setMiddleVideoNote] = useState<string>('')
-    const [middleContents, setMiddleContents] = useState<any[]>([])
     const [bottomQuestions, setBottomQuestions] = useState<any[]>([])
     // 用于动画的 refs
     const statsSectionRef = useRef<HTMLElement>(null)
@@ -40,7 +39,6 @@ const Home = () => {
         setMiddleVideoUrl(data.aboutUs.middleVideo)
         setLeftTopText(data.aboutUs.leftTopText)
         setMiddleVideoNote(data.aboutUs.middleVideoNote)
-        setMiddleContents(data.aboutUs.middleContents)
         setBottomQuestions(data.aboutUs.bottomQuestions)
     }
     // GSAP 滚动动画
@@ -383,14 +381,14 @@ const Home = () => {
                         The highlights of Molo
                     </div>
                     <div className='common-section-highlight-list' ref={highlightListRef}>
-                        {middleContents.map((highlight, index) => (
+                        {highlightList.map((highlight, index) => (
                             <div 
                                 className='common-section-highlight-item' 
                                 key={index}
                                 ref={el => highlightItemsRef.current[index] = el}
                             >
-                                <div dangerouslySetInnerHTML={{ __html: highlight.content }}></div>
-                                {/* <div className="common-section-highlight-item-header">
+                                
+                                <div className="common-section-highlight-item-header">
                                     <img src={highlight.image} alt={highlight.title} className='common-section-highlight-item-header-image' />
                                     <span>{'0' + (index+1)}</span>
                                 </div>
@@ -401,7 +399,7 @@ const Home = () => {
                                     <div className="common-section-highlight-item-content-description">
                                         {highlight.description}
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                         ))}
                     </div>
