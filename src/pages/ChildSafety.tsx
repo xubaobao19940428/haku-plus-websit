@@ -7,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import request from '@/api/request'
+import { Toast } from '@/components/ui/toast'
 interface ChildSafetyContent {
     [key: string]: {
         title: string
@@ -31,6 +32,7 @@ const ChildSafety = () => {
     const [childSafetyContent, setChildSafetyContent] = useState<ChildSafetyContent>({})
     const [activeTabIndex, setActiveTabIndex] = useState(0)
     const [uploadImageResult, setUploadImageResult] = useState<string>('')
+    const [showToast, setShowToast] = useState(false)
     const swiperRef = useRef<SwiperType | null>(null)
     const tabsContainerRef = useRef<HTMLDivElement>(null)
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
@@ -73,6 +75,17 @@ const ChildSafety = () => {
      */
     const handleCloseImage = () => {
         setUploadImageResult('')
+    }
+    /**
+     * 开始检测
+     */
+    const handleStartDetect = () => {
+        if (uploadImageResult) {
+            // 显示 Toast
+            setShowToast(true)
+            // 这里可以添加检测逻辑
+            console.log('Start detecting image:', uploadImageResult)
+        }
     }
     /**
      * 获取配置
@@ -205,7 +218,11 @@ const ChildSafety = () => {
                                                 )
                                             }
                                             <div className='start-detect-btn'>
-                                                <button className='start-detect-btn-btn' disabled={!uploadImageResult}>
+                                                <button 
+                                                    className='start-detect-btn-btn' 
+                                                    disabled={!uploadImageResult}
+                                                    onClick={handleStartDetect}
+                                                >
                                                     Start Detect
                                                 </button>
                                             </div>
@@ -247,6 +264,11 @@ const ChildSafety = () => {
                     </Swiper>
                 </div>
             </div>
+            <Toast 
+                message="Submit Successfully" 
+                show={showToast} 
+                onClose={() => setShowToast(false)} 
+            />
         </div>
     )
 }

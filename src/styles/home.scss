@@ -105,18 +105,9 @@
 }
 
 .download-button {
-	background-color: #000;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	border: none;
-	cursor: pointer;
-	transition: background-color 0.2s;
-	font-weight: 500;
-
-	&:hover {
-		background-color: #1f2937;
-	}
+	width: 136px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .phone-container {
@@ -509,14 +500,8 @@
 	}
 
 	.download-button {
-		border-radius: 0.52vw;
-		padding-left: 1.56vw;
-		padding-right: 1.56vw;
-		padding-top: 1.04vw;
-		padding-bottom: 1.04vw;
-		height: 3.65vw;
-		gap: 0.52vw;
-		font-size: 0.83vw;
+		width: 136px;
+		height: 40px;
 	}
 
 	.download-button-icon {
@@ -890,15 +875,11 @@
 						flex-direction: column;
 						align-items: center;
 						.download-button {
-							width: 189px;
-							height: 48px;
+							width: 136px;
+							height: 40px;
 							justify-content: center;
 							border-radius: 8px;
-							gap: 8px;
-							.download-button-icon {
-								width: 24px;
-								height: 24px;
-							}
+                            cursor: pointer;
 						}
 					}
 				}
