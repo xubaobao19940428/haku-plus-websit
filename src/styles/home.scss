@@ -135,6 +135,7 @@
 	height: 100%;
 	object-fit: cover;
     border-radius: 70px;
+    opacity: 0;
 }
 
 .stats-section {
@@ -515,6 +516,7 @@
 
 	.phone-screen {
 		border-radius: 70px;
+        opacity: 0;
 	}
 
 	.stats-section {
@@ -894,6 +896,7 @@
                         // padding: 0 32px;
                         .phone-screen{
                             border-radius: 60px;
+                            opacity: 0;
                         }
 					}
 				}
