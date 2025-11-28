@@ -301,11 +301,11 @@ const Home = () => {
                         {/* Right - Phone Image */}
                         <div className="phone-container">
                             {/* Phone Frame */}
-                            <img
+                            {/* <img
                                 src="/images/phone-frame.png"
                                 alt="Phone"
                                 className="phone-frame"
-                            />
+                            /> */}
                             {/* Phone Screen - positioned inside the frame */}
                             <div className="phone-screen-wrapper">
                                 {/* <img
@@ -313,7 +313,7 @@ const Home = () => {
                                     alt="Phone Screen"
                                     className="phone-screen"
                                 /> */}
-                                <video src={rightTopVideoUrl} autoPlay muted loop className='phone-screen'></video>
+                                <video src={rightTopVideoUrl} autoPlay muted loop className='phone-screen' playsInline></video>
                             </div>
                         </div>
                     </div>
