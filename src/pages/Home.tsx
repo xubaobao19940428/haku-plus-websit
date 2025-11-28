@@ -312,11 +312,12 @@ const Home = () => {
                             /> */}
                             {/* Phone Screen - positioned inside the frame */}
                             <div className="phone-screen-wrapper">
-                                {/* <img
+                                <img
                                     src="/images/phone-screen.png"
                                     alt="Phone Screen"
                                     className="phone-screen"
-                                /> */}
+                                    
+                                />
                                 <video src={rightTopVideoUrl} autoPlay muted loop className='phone-screen' webkit-playsinline
                                     x5-playsinline
                                     playsInline></video>
