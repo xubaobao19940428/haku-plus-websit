@@ -2,7 +2,7 @@ import '@/styles/deleteAccount.scss'
 import '@/styles/footer.scss'
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import logo from '@/assets/images/logo.png'
 // 自定义下拉选择组件
 interface CustomSelectProps {
     value: string
@@ -110,7 +110,7 @@ const DeleteAccount = () => {
         <div className="delete-account-container">
             <header>
                 <div className='delete-account-left'>
-                    <img src="/images/logo.png" alt="" />
+                    <img src={logo} alt="" />
                     <span className='delete-account-left-title'>Molo</span>
                 </div>
                 <div className='delete-account-right' onClick={() => {
@@ -279,11 +279,12 @@ const DeleteAccount = () => {
                         {/* Logo and Description */}
                         <div className="footer-logo-section">
                             <div className="footer-logo-wrapper">
-                                <div className="footer-logo-icon">
+                                <img src={logo} alt=""  className='footer-logo-icon'/>
+                                {/* <div className="footer-logo-icon">
                                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="footer-logo-svg">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                                     </svg>
-                                </div>
+                                </div> */}
                                 <span className="footer-logo-text">Molo</span>
                             </div>
                             <h3 className="footer-title">
