@@ -308,8 +308,8 @@ const DeleteAccount = () => {
                     {/* Divider and Copyright */}
                     <div className="footer-divider">
                         <div className="footer-copyright">
-                            <p>12th Floor,San Toi Building,134-135,Central And Western,Shang Hai</p>
-                            <p>Copyright &copy; 2025 Molo Live Co</p>
+                            <p>Room 811, Beverly Commercial Building, 87-105 Chatham Road South, Tsim Sha Tsui, Kowloon, Hong Kong</p>
+                            <p>Copyright &copy; 2025 Kika Pika Network Limited</p>
                         </div>
                     </div>
                 </div>
