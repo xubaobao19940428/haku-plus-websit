@@ -276,9 +276,9 @@ const Layout = () => {
                     {/* Divider and Copyright */}
                     <div className="footer-divider">
                         <div className="footer-copyright">
-                            <p>Rm 811 BEVERLEY COML BLDG 87-105,CHATHAM RD S Tsim Sha Tsui,HK
+                            <p>Room 811, Beverly Commercial Building, 87-105 Chatham Road South, Tsim Sha Tsui, Kowloon, Hong Kong
                             </p>
-                            <p>&copy; KIKA PIKA NETWORK LIMITED.,2025.All rights reserved. </p>
+                            <p>Copyright &copy; 2025 Kika Pika Network Limited </p>
                         </div>
                     </div>
                 </div>
