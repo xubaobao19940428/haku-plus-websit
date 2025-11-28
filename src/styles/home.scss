@@ -120,6 +120,7 @@
 	height: auto;
 	position: relative;
 	z-index: 30;
+    opacity: 0;
 }
 
 .phone-screen-wrapper {
@@ -890,6 +891,7 @@
 					padding: 0 32px;
 					.phone-frame {
 						width: 100%;
+                        opacity: 0;
 					}
 					.phone-screen-wrapper {
 						left: 38px;
