@@ -1,4 +1,4 @@
-const baseURL = 'https://s3.us-east-005.backblazeb2.com/haku-app/website'
+const baseURL = 'https://s3.us-east-005.backblazeb2.com/molo-asset/mlo/website'
 
 const request = async (url: string, method: string = 'GET', data?: Record<string, unknown>) => {
     return new Promise<unknown>((resolve, reject) => {
