@@ -1,4 +1,4 @@
-const baseURL = 'https://s3.us-east-005.backblazeb2.com/molo-asset/mlo/website'
+const baseURL = '/json'
 
 const request = async (url: string, method: string = 'GET', data?: Record<string, unknown>) => {
     return new Promise<unknown>((resolve, reject) => {
