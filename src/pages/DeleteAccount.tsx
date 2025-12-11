@@ -195,10 +195,10 @@ const DeleteAccount = () => {
                         </div>
                     </div>
 
-                    {/* Tigo Account Identification Section */}
+                    {/* Molo Account Identification Section */}
                     <div className='form-section'>
                         <div className='form-field'>
-                            <label className='form-label'>Select one of the following for identifying your Tigo account.</label>
+                            <label className='form-label'>Select one of the following for identifying your Molo account.</label>
                             <CustomSelect
                                 value={formData.accountType}
                                 options={[
@@ -259,7 +259,7 @@ const DeleteAccount = () => {
                                         />
                                         <span className='checkbox-custom'></span>
                                         <span className='checkbox-group-text'>
-                                            I believe that it is no longer necessary for Tigo to hold the personal data it holds about me. (Please provide us with details as to your reasoning below.)
+                                            I believe that it is no longer necessary for Molo to hold the personal data it holds about me. (Please provide us with details as to your reasoning below.)
                                         </span>
                                     </label>
                                 ))}
