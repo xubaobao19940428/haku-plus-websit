@@ -111,7 +111,9 @@ const Layout = () => {
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false)
     }
-
+    const handleDownloadButtonClick = () => {
+        window.open('https://play.google.com/store/apps/details?id=com.kikapika.molo', '_blank')
+    }
     return (
         <div className="layout-wrapper">
             {/* 导航栏 */}
@@ -181,7 +183,7 @@ const Layout = () => {
 
                         {/* Download Button */}
                         <div className="nav-button-wrapper">
-                            <button className="download-nav-button">
+                            <button className="download-nav-button" onClick={handleDownloadButtonClick}>
                                 Download
                             </button>
                         </div>
@@ -261,7 +263,7 @@ const Layout = () => {
                         </div>
 
                         {/* Download Buttons */}
-                        <div className="footer-buttons">
+                        <div className="footer-buttons" onClick={handleDownloadButtonClick}>
                             {/* <button className="footer-button">
                                 <img src="/images/app-store.png" alt="" className="footer-button-icon" />
                                 <span className="footer-button-text">AppStore</span>
